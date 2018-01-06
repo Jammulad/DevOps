@@ -13,13 +13,13 @@
           tasks:
                   - name: Lanuch AWS EC2 Instance
                     ec2:
-                            key pair name: "{{traffic1}}"
-                            security group name: "{{default}}"
+                            key pair name: "{{******}}"
+                            security group name: "{{*****}}"
                             instance-type: "{{t2.micro}}"
                             image: "{{ami-c5062ba0}}"
                             wait: true
                             region: "{{us east ohio}}"
-                            vpc_subnet-id: subnet-01fc9a7a
+                            vpc_subnet-id: subnet-******
                             assign_public_ip: yes
                      register: ec2
                   - name: Add new instance to host group
@@ -36,14 +36,14 @@
                     ec2_group:
                             name: default
                             description: default VPC Security group
-                            vpc_id: vpc-f08ade99
+                            vpc_id: vpc-******
                             aws_secret_key: SECRET
                             access_key: ACCESS
                             rules_egress:
                                   - proto: all tcp
                                     from_port: 22
                                     to_port: 22
-                                    Security group id: sg-040ef46c
+                                    Security group id: sg-*****
                                   - proto: http
                                     from_port: 80
                                     to_port: 80
@@ -57,8 +57,8 @@
                                   - local action:
                                           name: "ec2"
                                           state: present
-                                          instance_id: i-030ea80aa281ca10b
-                                          subnet: subnet-01fc9a7a
+                                          instance_id: i-*************
+                                          subnet: subnet-*********
                                           module: ec2_elb-lb
                                           listeners:
                                                   - protocol: https
@@ -70,9 +70,9 @@
                         ec2 launch config:
                                 name: launch_config1
                                 image_id: ami-c5062ba0
-                                key pair name: traffic1
+                                key pair name: ********
                                 region: us-east-ohio
-                                security group: sg-040ef46c
+                                security group: sg-********
                                 instance-type: t2.micro
                                 assign_public_ip: yes
                          ec2 auto scaling group:
